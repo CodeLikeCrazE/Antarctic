@@ -67,10 +67,14 @@ class VaultServer {
 
 		this.app.get('/object', function (req: Request, res: Response) {
 			try {
-				const result: string = vaultMount.getObject(req.query.hash);
-				res.status(200).send({
-					data:result
-				});
+				if (req.query.hash as string) {
+					const result: string = vaultMount.getObject(req.query.hash as string);
+					res.status(200).send({
+						data:result
+					});
+				} else {
+					throw new Error('Hash is not a string');
+				}
 			} catch (e: any) {
 				res.status(400).send({
 					error:e.toString()

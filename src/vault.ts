@@ -52,15 +52,13 @@ class Vault {
 		}
 	}
 
-	getObject(hash: any): string {
+	getObject(hash: string): string {
 		// Validate input
 		if (!hash) {
 			throw new Error('No hash provided');
 		}
 
-		// Get
-		hash = hash as string;
-		
+		// Get		
 		if (hash.includes('..')) {
 			throw new Error('Shenanigans!');
 		}
