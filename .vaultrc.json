@@ -1,0 +1,12 @@
+{
+	"servers": [
+		{
+			"port": 3000,
+			"path": "/vaults/3000"
+		},
+		{
+			"port": 3001,
+			"path": "/vaults/3001"
+		}
+	]
+}
