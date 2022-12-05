@@ -61,6 +61,10 @@ class Vault {
 		// Get
 		hash = hash as string;
 		
+		if (hash.includes('..')) {
+			throw new Error('Shenanigans!');
+		}
+
 		if (!this.cache[hash]) {
 			const objectPath = path.join(this.objectListPath, hash);
 			if (!fs.existsSync(objectPath)) {

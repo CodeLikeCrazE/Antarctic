@@ -68,27 +68,39 @@ class VaultServer {
 		this.app.get('/object', function (req: Request, res: Response) {
 			try {
 				const result: string = vaultMount.getObject(req.query.hash);
-				res.status(200).send(result);
+				res.status(200).send({
+					data:result
+				});
 			} catch (e: any) {
-				res.status(400).send(e.toString());
+				res.status(400).send({
+					error:e.toString()
+				});
 			}
 		});
 
 		this.app.get('/pull', function (req: Request, res: Response) {
 			try {
 				const result: string[] = vaultMount.objectList();
-				res.status(200).send(JSON.stringify(result));
+				res.status(200).send({
+					data:result
+				});
 			} catch (e: any) {
-				res.status(400).send(e.toString());
+				res.status(400).send({
+					error:e.toString()
+				});
 			}
 		});
 
 		this.app.post('/upload', function (req: Request, res: Response) {
 			try {
 				vaultMount.uploadObject(req.body.content);
-				res.status(200).send(utils.hashHelper(req.body.content));
+				res.status(200).send({
+					data:utils.hashHelper(req.body.content)
+				});
 			} catch (e: any) {
-				res.status(400).send(e.toString());
+				res.status(400).send({
+					error:e.toString()
+				});
 			}
 		});
 

@@ -7,7 +7,7 @@ import * as crypto from 'crypto';
  * @returns {string} The result
  */
 function hashHelper(content: string): string {
-	return crypto.createHash('sha256').update(content).digest('base64');
+	return crypto.createHash('sha256').update(content).digest('base64').split('/').join('').split('+').join('').split('=').join('');
 }
 
 export {
